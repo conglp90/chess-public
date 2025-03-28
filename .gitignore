@@ -1,0 +1,35 @@
+# Flutter build artifacts
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# Local configuration files
+.DS_Store
+*.log
+*.pyc
+*.swp
+.atom/
+.buildlog/
+
+# Sources
+lib/
+test/
+analysis_options.yaml
+pubspec.lock
+pubspec.yaml
+
+# Không cần những tệp không liên quan trực tiếp đến web
+android/
+ios/
+linux/
+macos/
+windows/ 
