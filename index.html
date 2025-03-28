@@ -14,7 +14,7 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
-  <base href="/">
+  <base href="/chess-public/">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -155,10 +155,13 @@
       
       // Cấu hình đơn giản hóa cho local development
       _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
         onEntrypointLoaded: function(engineInitializer) {
           engineInitializer.initializeEngine({
             hostElement: target,
-            renderer: 'html' // Cấu hình renderer tại đây
+            renderer: 'auto' // Để hệ thống tự chọn renderer tốt nhất
           }).then(function(appRunner) {
             appRunner.runApp();
             
