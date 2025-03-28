@@ -137,9 +137,9 @@
     const isLocalhost = window.location.hostname === 'localhost' || 
                         window.location.hostname === '127.0.0.1' ||
                         window.location.hostname.includes('192.168.');
-    
-    // Lấy phiên bản Service Worker từ file, hoặc dùng giá trị mặc định nếu không có
-    const serviceWorkerVersion = '1';
+
+    // Loại bỏ cài đặt renderer trực tiếp vì sẽ được cấu hình qua initializeEngine
+    // window.flutterWebRenderer = "html"; - dòng này gây xung đột
     
     // Hàm tắt loading indicator
     function hideLoader() {
@@ -155,13 +155,10 @@
       
       // Cấu hình đơn giản hóa cho local development
       _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
         onEntrypointLoaded: function(engineInitializer) {
           engineInitializer.initializeEngine({
             hostElement: target,
-            renderer: 'auto' // Để hệ thống tự chọn renderer tốt nhất
+            renderer: 'html' // Cấu hình renderer tại đây
           }).then(function(appRunner) {
             appRunner.runApp();
             
