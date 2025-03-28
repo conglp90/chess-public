@@ -16,7 +16,7 @@
 
 ## Demo
 
-Bạn có thể truy cập phiên bản demo tại: https://conglp90.github.io/chess-pages/
+Bạn có thể truy cập phiên bản demo tại: https://conglp90.github.io/chess-public/
 
 ## Hướng dẫn cài đặt
 
