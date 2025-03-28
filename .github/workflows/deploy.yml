@@ -8,6 +8,8 @@ on:
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 # Allow one concurrent deployment
 concurrency:
@@ -17,9 +19,15 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.5.0
@@ -27,4 +35,8 @@ jobs:
           folder: .              # Deploy root directory
           branch: gh-pages       # Branch to deploy to
           clean: true            # Clean previous files
-          single-commit: true    # Only keep latest commit in history 
+          single-commit: true    # Only keep latest commit in history
+
+      - name: Enable GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 
