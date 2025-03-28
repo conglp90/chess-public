@@ -32,8 +32,4 @@ jobs:
           folder: .              # Deploy root directory
           branch: gh-pages       # Branch to deploy to
           clean: true            # Clean previous files
-          single-commit: true    # Only keep latest commit in history
-
-      - name: Enable GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4 
+          single-commit: true    # Only keep latest commit in history 
