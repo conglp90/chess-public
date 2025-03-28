@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/chess-public/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Ứng dụng chơi cờ tướng truyền thống Trung Quốc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Cờ Tướng">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  
+  <!-- iOS splash screens -->
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)" href="splash_screens/iPhone_14_Pro_Max_portrait.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3)" href="splash_screens/iPhone_14_Pro_portrait.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3)" href="splash_screens/iPhone_14_Plus__iPhone_13_Pro_Max__iPhone_12_Pro_Max_portrait.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" href="splash_screens/iPhone_14__iPhone_13_Pro__iPhone_13__iPhone_12_Pro__iPhone_12_portrait.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" href="splash_screens/iPhone_13_mini__iPhone_12_mini__iPhone_11_Pro__iPhone_XS__iPhone_X_portrait.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" href="splash_screens/iPhone_11_Pro_Max__iPhone_XS_Max_portrait.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" href="splash_screens/iPhone_11__iPhone_XR_portrait.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)" href="splash_screens/iPhone_8_Plus__iPhone_7_Plus__iPhone_6s_Plus__iPhone_6_Plus_portrait.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" href="splash_screens/iPhone_8__iPhone_7__iPhone_6s__iPhone_6__4.7__iPhone_SE_portrait.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="splash_screens/4__iPhone_SE__iPod_touch_5th_generation_and_later_portrait.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>Cờ Tướng - Chinese Chess</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Flutter initialization -->
+  <script src="flutter.js"></script>
+  
+  <style>
+    html, body {
+      background-color: #F8F0E3;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    
+    #flutter_target {
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      /* Thêm padding để tránh nội dung bị tai thỏ che khuất */
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+    
+    .flutter-loader {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: #F8F0E3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      /* Thêm padding để tránh nội dung bị tai thỏ che khuất */
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+    
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 6px solid #8B4513;
+      border-radius: 50%;
+      border-top: 6px solid #D2B48C;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* iOS notch safe area - sửa lại để sử dụng đúng */
+    @supports(padding: max(0px)) {
+      body {
+        /* Loại bỏ padding trực tiếp trên body */
+        padding: 0;
+      }
+      
+      /* Thêm class cho container bọc ngoài Flutter app để tạo khoảng cách an toàn */
+      .safe-area-container {
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+        padding-top: max(12px, env(safe-area-inset-top));
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+        box-sizing: border-box;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="safe-area-container">
+    <div id="flutter_target"></div>
+  </div>
+  <div class="flutter-loader" id="loading">
+    <div class="loader"></div>
+  </div>
+  
+  <script>
+    // Phát hiện môi trường local
+    const isLocalhost = window.location.hostname === 'localhost' || 
+                        window.location.hostname === '127.0.0.1' ||
+                        window.location.hostname.includes('192.168.');
+
+    // Loại bỏ cài đặt renderer trực tiếp vì sẽ được cấu hình qua initializeEngine
+    // window.flutterWebRenderer = "html"; - dòng này gây xung đột
+    
+    // Hàm tắt loading indicator
+    function hideLoader() {
+      const loader = document.getElementById('loading');
+      if (loader) {
+        loader.style.display = 'none';
+      }
+    }
+
+    // Hàm khởi động Flutter
+    function bootstrapFlutter() {
+      const target = document.getElementById('flutter_target');
+      
+      // Cấu hình đơn giản hóa cho local development
+      _flutter.loader.loadEntrypoint({
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine({
+            hostElement: target,
+            renderer: 'html' // Cấu hình renderer tại đây
+          }).then(function(appRunner) {
+            appRunner.runApp();
+            
+            // Ẩn loading khi đã khởi động
+            hideLoader();
+          }).catch(function(error) {
+            console.error('Không thể khởi động Flutter:', error);
+            document.getElementById('loading').innerHTML = 
+              '<div style="text-align: center; padding: 20px; color: #8B4513;">' +
+              '<h2>Lỗi khi khởi động ứng dụng</h2>' +
+              '<p>Chi tiết lỗi: ' + error.message + '</p>' +
+              '<button onclick="window.location.reload()" ' +
+              'style="background: #8B4513; color: white; border: none; padding: 10px 20px; ' +
+              'border-radius: 4px; cursor: pointer;">Thử lại</button>' +
+              '</div>';
+          });
+        }
+      });
+    }
+
+    window.addEventListener('load', function() {
+      // Timeout ngắn hơn cho môi trường local
+      const timeoutDuration = isLocalhost ? 8000 : 20000;
+      
+      // Khởi động Flutter ngay khi có thể
+      if (document.readyState === 'complete') {
+        bootstrapFlutter();
+      } else {
+        window.addEventListener('DOMContentLoaded', bootstrapFlutter);
+      }
+      
+      // Timeout cho loading quá lâu
+      setTimeout(function() {
+        const loadingElement = document.getElementById('loading');
+        if (loadingElement && loadingElement.style.display !== 'none') {
+          loadingElement.innerHTML = 
+            '<div style="text-align: center; padding: 20px; color: #8B4513;">' +
+            '<h2>Tải ứng dụng quá lâu</h2>' +
+            '<p>Bạn đang chạy trên ' + (isLocalhost ? 'localhost' : 'web') + '</p>' +
+            '<button onclick="window.location.reload()" ' +
+            'style="background: #8B4513; color: white; border: none; padding: 10px 20px; ' +
+            'border-radius: 4px; cursor: pointer;">Tải lại</button>' +
+            '</div>';
+        }
+      }, timeoutDuration);
+    });
+  </script>
+</body>
+</html>
+

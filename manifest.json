@@ -1,0 +1,58 @@
+{
+    "name": "Cờ Tướng - Chinese Chess",
+    "short_name": "Cờ Tướng",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#F8F0E3",
+    "theme_color": "#8B4513",
+    "description": "Ứng dụng chơi cờ tướng truyền thống Trung Quốc",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Chơi mới",
+            "short_name": "Chơi mới",
+            "description": "Bắt đầu ván cờ mới",
+            "url": "/?mode=new",
+            "icons": [
+                {
+                    "src": "icons/Icon-192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "screenshots/screen1.png",
+            "sizes": "1170x2532",
+            "type": "image/png",
+            "platform": "narrow",
+            "label": "Màn hình chính Cờ Tướng"
+        }
+    ]
+}
