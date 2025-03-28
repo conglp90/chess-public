@@ -137,9 +137,9 @@
     const isLocalhost = window.location.hostname === 'localhost' || 
                         window.location.hostname === '127.0.0.1' ||
                         window.location.hostname.includes('192.168.');
-
-    // Loại bỏ cài đặt renderer trực tiếp vì sẽ được cấu hình qua initializeEngine
-    // window.flutterWebRenderer = "html"; - dòng này gây xung đột
+    
+    // Lấy phiên bản Service Worker từ file, hoặc dùng giá trị mặc định nếu không có
+    const serviceWorkerVersion = '1';
     
     // Hàm tắt loading indicator
     function hideLoader() {
